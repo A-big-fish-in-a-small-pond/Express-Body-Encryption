@@ -1,12 +1,25 @@
 const express = require("express");
+const { expressSecurity } = require("./body-security/vo/body-security");
 const app = express();
+
+let options = {
+    enabled: true,
+    store: "default",
+    key: "abcdefghijklmnop",
+    path: "/security",
+    handler: null,
+    accessPath: [],
+};
+const security = expressSecurity(options);
 
 /** middle ware */
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(security.bodyEncryptionHandler);
 
 app.use("/", (req, res) => {
     setTimeout(() => {
-        res.json({ success: "end page" });
+        res.json({ ...req.body });
     }, 1);
 });
 
