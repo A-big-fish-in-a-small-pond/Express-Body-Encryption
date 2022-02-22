@@ -1,3 +1,9 @@
-const { enCrypt } = require("../body-security/util/aes");
+const { moduleExports } = require("../body-security");
+const expressDecrypt = moduleExports.expressDecryption("localhost", 3000, "/security");
 
-console.log(enCrypt("박종선입니다요", "6c4676ed82c6b13dbf189a29a9c306dd"));
+async function main() {
+    let a = await expressDecrypt.encryptPost("http://localhost:3000/security", "안녕하세요 김준호입니다.");
+    console.log(a);
+}
+
+main();
