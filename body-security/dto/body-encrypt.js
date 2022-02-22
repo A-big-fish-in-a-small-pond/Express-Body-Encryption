@@ -99,7 +99,7 @@ ExpressBodyEncrypt.prototype.requestMethodGET = function (path, ipv4) {
 
 const security = new ExpressBodyEncrypt();
 
-module.exports.expressEncrypt = (options) => {
-    security.setOptions(options);
+module.exports.expressEncrypt = (options, store = null) => {
+    security.setOptions(options, store);
     return security;
 };
