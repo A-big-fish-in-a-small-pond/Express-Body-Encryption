@@ -22,11 +22,9 @@ ExpressBodyDecrypt.prototype.encrypt = enCrypt;
 ExpressBodyDecrypt.prototype.encryptPost = async function (url, body) {
     try {
         let key = await this.getKey();
-        let encryptBody = {
-            data: this.encrypt(body, key),
-        };
+        body = JSON.stringify(body);
 
-        let result = await axios.post(url, encryptBody);
+        let result = await axios.post(url, [this.encrypt(body, key)]);
         return result.data;
     } catch (err) {
         throw new Error(err);

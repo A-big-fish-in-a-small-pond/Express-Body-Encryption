@@ -66,10 +66,10 @@ ExpressBodyEncrypt.prototype.requestMethodPOST = function (req) {
             this.session.deleteSession(encryptIpv4);
         }
 
-        let data = deCrypt(JSON.stringify(req.body.data), sessionKey);
+        let data = deCrypt(JSON.stringify(req.body), sessionKey);
 
         if (data != null) {
-            req.body.data = data;
+            req.body = JSON.parse(data);
             return true;
         } else {
             return false;
