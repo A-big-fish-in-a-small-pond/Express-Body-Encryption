@@ -1,8 +1,9 @@
 const { options, DEFAULT } = require("../const/const");
 const { createKey, enCrypt, deCrypt } = require("../util/aes");
-const { Session } = require("./session");
+const { Session } = require("../vo/session");
+const { DefaultStore } = require("../vo/store");
 
-function ExpressBodySecurity() {
+function ExpressBodyEncrypt() {
     this.session = new Session();
     this.enabled = true;
     this.key = null;
@@ -11,9 +12,9 @@ function ExpressBodySecurity() {
     this.handler = null;
 }
 
-ExpressBodySecurity.prototype.setOptions = function (opt = options, store) {
+ExpressBodyEncrypt.prototype.setOptions = function (opt = options, store) {
     if (opt.store == DEFAULT || store == null) {
-        this.session.setStore(new Map());
+        this.session.setStore(new DefaultStore());
     } else {
         this.session.setStore(store);
     }
@@ -25,7 +26,7 @@ ExpressBodySecurity.prototype.setOptions = function (opt = options, store) {
     this.accessPath = opt.accessPath;
 };
 
-ExpressBodySecurity.prototype.bodyEncryptionHandler = function (req, res, next) {
+ExpressBodyEncrypt.prototype.bodyEncryptionHandler = function (req, res, next) {
     if (security.enabled == true) {
         switch (req.method) {
             case "GET":
@@ -48,7 +49,7 @@ ExpressBodySecurity.prototype.bodyEncryptionHandler = function (req, res, next) 
     }
 };
 
-ExpressBodySecurity.prototype.requestMethodPOST = function (req) {
+ExpressBodyEncrypt.prototype.requestMethodPOST = function (req) {
     try {
         if (this.accessPath.length != 0) {
             if (this.accessPath.some(req.path) == false) {
@@ -78,7 +79,7 @@ ExpressBodySecurity.prototype.requestMethodPOST = function (req) {
     }
 };
 
-ExpressBodySecurity.prototype.requestMethodGET = function (path, ipv4) {
+ExpressBodyEncrypt.prototype.requestMethodGET = function (path, ipv4) {
     try {
         if (path == this.path) {
             let timestamp = new Date().getTime().toString();
@@ -96,9 +97,9 @@ ExpressBodySecurity.prototype.requestMethodGET = function (path, ipv4) {
     }
 };
 
-const security = new ExpressBodySecurity();
+const security = new ExpressBodyEncrypt();
 
-module.exports.expressSecurity = (options) => {
+module.exports.expressEncrypt = (options) => {
     security.setOptions(options);
     return security;
 };
