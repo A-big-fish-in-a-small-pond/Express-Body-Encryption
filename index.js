@@ -1,5 +1,5 @@
 const express = require("express");
-const { expressSecurity } = require("./body-security/vo/body-security");
+const { moduleExports } = require("./body-security");
 const app = express();
 
 let options = {
@@ -10,7 +10,8 @@ let options = {
     handler: null,
     accessPath: [],
 };
-const security = expressSecurity(options);
+
+const security = moduleExports.expressEncryption(options);
 
 /** middle ware */
 app.use(express.json());
