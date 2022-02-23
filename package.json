@@ -1,6 +1,6 @@
 {
     "name": "express-body-encryption",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "description": "익스프레스 요청 바디 부분 암호화 처리 라이브러리",
     "keywords": [
         "express",
@@ -9,19 +9,19 @@
     "homepage": "https://github.com/A-big-fish-in-a-small-pond/Express-Body-Encryption",
     "bugs": {
         "url": "https://github.com/A-big-fish-in-a-small-pond",
-        "email": "libtv@naver.com"
+        "email": "ahrl1994@gmail.com"
     },
     "main": "dist/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": {
-        "name": "김준호",
-        "email": "libtv@naver.com"
+        "name": "박종선",
+        "email": "ahrl1994@gmail.com"
     },
     "contributors": [
-        "김준호 <libtv@naver.com>",
-        "박종선 <ahrl1994@gmail.com>"
+        "박종선 <ahrl1994@gmail.com>",
+        "김준호 <libtv@naver.com>"
     ],
     "license": "MIT",
     "dependencies": {
