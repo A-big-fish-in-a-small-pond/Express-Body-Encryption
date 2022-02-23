@@ -1,4 +1,4 @@
-const { moduleExports } = require("../body-security");
+const { moduleExports } = require("../dist");
 const expressDecrypt = moduleExports.expressDecryption("localhost", 3000, "/security");
 
 let body = {

@@ -14,6 +14,12 @@ Express-Body-Encryption 라이브러리는 Express 미들웨어 라이브러리 
 
 ## Installation
 
+From npm:
+
+```sh
+npm i express-body-encryption
+```
+
 From Github Releases:
 
 ```sh
@@ -29,7 +35,7 @@ git clone https://github.com/A-big-fish-in-a-small-pond/Express-Concurrent-Contr
 아래는 CJS 형태에서 임포트를 하기 위한 방법입니다.
 
 ```ts
-const { moduleExports } = require("./body-security");
+const { moduleExports } = require("express-body-encryption");
 ```
 
 ### Examples
@@ -38,7 +44,7 @@ const { moduleExports } = require("./body-security");
 
 ```ts
 const express = require("express");
-const { moduleExports } = require("./body-security");
+const { moduleExports } = require("express-body-encryption");
 const app = express();
 
 let options = {
@@ -68,6 +74,24 @@ app.listen(3000, "0.0.0.0", () => {
 });
 ```
 
+express에서 암호화 한 Body 부분을 테스트할 때 사용한 예제입니다. client.js:
+
+```ts
+const { moduleExports } = require("express-body-encryption");
+const expressDecrypt = moduleExports.expressDecryption("localhost", 3000, "/security");
+
+let body = {
+    data: "안녕하세요 김준호입니다.",
+};
+
+async function main() {
+    let a = await expressDecrypt.encryptPost("http://localhost:3000/security", body);
+    console.log(a);
+}
+
+main();
+```
+
 ## Issues and Contributing
 
 If you encounter a bug or want to see something added/changed, please go ahead
@@ -75,7 +99,14 @@ and [open an issue](https://github.com/A-big-fish-in-a-small-pond/Express-Concur
 If you need help with something, feel free to
 [start a discussion](https://github.com/A-big-fish-in-a-small-pond/Express-Concurrent-Control/discussions/new)!
 
+## Homepage
+
+Github © [Page](https://github.com/A-big-fish-in-a-small-pond/Express-Body-Encryption)
+
+NPM © [Page](https://www.npmjs.com/package/express-body-encryption)
+
 ## License
 
 MIT © [Park and Kim](http://github.com/nusgnojkrap)
+
 MIT © [Park and Kim](http://github.com/libtv)

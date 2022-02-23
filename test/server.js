@@ -1,5 +1,5 @@
 const express = require("express");
-const { moduleExports } = require("./body-security");
+const { moduleExports } = require("../dist");
 const app = express();
 
 let options = {
